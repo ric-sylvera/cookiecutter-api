@@ -1,0 +1,16 @@
+{
+  "name": "cookiecutter-api",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SylveraIO/cookiecutter-api.git"
+  },
+  "dependencies": {
+    "@google/semantic-release-replace-plugin": "~1.1.0",
+    "semantic-release": "~19.0.2",
+    "@semantic-release/changelog": "~6.0.1",
+    "@semantic-release/git": "~10.0.1",
+    "semantic-release-python": "~2.5.30"
+  }
+}

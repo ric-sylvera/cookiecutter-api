@@ -1,0 +1,22 @@
+{
+  "project_name": "cookiecutter-conda",
+  "friendly_name": "{{ cookiecutter.project_name.replace('-', ' ').title() }}",
+  "description": "TODO: write a brief description.",
+  "author": "",
+  "email": "",
+  "github_user": "",
+  "version": "0.0.1",
+  "development_status": [
+    "Development Status :: 1 - Planning",
+    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 6 - Mature",
+    "Development Status :: 7 - Inactive"
+  ],
+  "root_branch_name": "main",
+  "_copy_without_render": [
+        "logconfig.yml"
+  ]
+}

@@ -1,0 +1,8 @@
+site_name: Data API Client
+theme:
+  name: cinder
+repo_url: https://github.com/SylveraIO/cookiecutter-api
+nav:
+  - Home: index.md
+plugins:
+  - search

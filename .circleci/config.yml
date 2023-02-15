@@ -1,0 +1,76 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@2.0.3
+  node: circleci/node@5.0.2
+
+workflows:
+  build-publish-release:
+    jobs:
+      - semantic-release:
+          filters:
+            branches:
+              only: main
+
+jobs:
+#  docs-build:
+#    docker:
+#      - image: cimg/python:3.10
+#    steps:
+#      - checkout
+#      - python/install-packages:
+#          pkg-manager: pip
+#          pip-dependency-file: requirements.txt
+#      - attach_workspace:
+#          at: docs/_build
+#      - restore_cache:
+#          name: Restore Nox envs cache
+#          keys:
+#            - nox-docs-{{ checksum "docs/requirements.txt" }}
+#      - run:
+#          name: Build documentation
+#          command: nox --non-interactive -rs docs
+#      - persist_to_workspace:
+#          root: docs/_build
+#          paths:
+#            - html
+#
+#  docs-deploy:
+#    docker:
+#      - image: node:8.10.0
+#    steps:
+#      - checkout
+#      - attach_workspace:
+#          at: docs/_build
+#      - run:
+#          name: Disable jekyll builds
+#          command: touch docs/_build/html/.nojekyll
+#      - run:
+#          name: Install and configure dependencies
+#          command: |
+#            npm install -g --silent gh-pages@2.0.1
+#            git config user.email "ci-build@sylvera.io"
+#            git config user.name "ci-build"
+#      - add_ssh_keys:
+#          fingerprints:
+#            - "df:dd:a4:a5:bd:51:86:a9:89:89:08:be:ac:34:7e:87"
+#
+#      - run:
+#          name: Deploy docs to gh-pages branch
+#          command: gh-pages --dotfiles --message "[skip ci] Updates" --dist docs/_build/html
+
+  semantic-release:
+    docker:
+      - image: cimg/python:3.9-node
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "df:dd:a4:a5:bd:51:86:a9:89:89:08:be:ac:34:7e:87"
+      - checkout
+      - run:
+          name: Shrinkwrap npm dependencies
+          command: npm shrinkwrap
+      - node/install-packages
+      - run:
+          name: Run `semantic-release`
+          command: DEBUG=* npx semantic-release

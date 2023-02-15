@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "{{ cookiecutter.project_name }}"
+version = "0.0.1"
+description = "{{ cookiecutter.description }}"
+authors = ["{{ cookiecutter.author }} <{{ cookiecutter.email }}>"]
+readme = "README.md"
+include = ["entrypoint.py", "logconfig.yml"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+
+[tool.poetry.scripts]
+entrypoint = "entrypoint"
+
+[tool.black]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = "E203"
+
+[tool.mypy]
+exclude = ["^tests/"]
+disallow_untyped_defs = true
+disallow_any_unimported = true
+no_implicit_optional = true
+check_untyped_defs = true
+warn_return_any = true
+show_error_codes = true
+show_column_numbers = true
+warn_unused_ignores = true
+
+[tool.bandit]
+
+[tool.pytest.ini_options]
+addopts = "-n auto"
+junit_family = "xunit1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
